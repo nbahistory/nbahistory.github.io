@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="logo-nba-logoman.svg" type="image/svg+xml">
+    <title>История NBA</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <header>
+        <h1>История NBA</h1>
+        <nav>
+            <a href="index.html">Главная</a>
+            <a href="teams.html">Команды</a>
+            <a href="contact.html">Контакты</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="history-container">
+            <h1>История NBA: от истоков до современности</h1>
+            
+            <div class="era-card clearfix" onclick="toggleAdditionalInfo(this)">
+                <h2 class="era-title">Зарождение баскетбола (1891–1946)</h2>
+                <img src="https://sun9-60.userapi.com/impg/vfZNEs7F4r3PSTngUutTIBCapgON62iS0C6Ksg/ISmmBWf41pY.jpg?size=589x584&quality=96&sign=9ac883431442322d93c361f404f71f14&type=album" alt="Джеймс Нейсмит" class="era-image">
+                <p>Баскетбол был изобретен в 1891 году <strong>Джеймсом Нейсмитом</strong>. Первый профессиональный матч состоялся в 1896 году между командами из Трентона и Бруклина. В 1898 году появилась <strong>Национальная баскетбольная лига (НБЛ)</strong>, но настоящий прорыв произошел в 1946-м с созданием <strong>БАА (Баскетбольной ассоциации Америки)</strong>.</p>
+                
+                <div class="additional-info">
+                    <h3>Интересные факты:</h3>
+                    <ul>
+                        <li>Первый матч состоялся 21 декабря 1891 года с использованием футбольного мяча и двух персиковых корзин</li>
+                        <li>Первые правила Нейсмита включали всего 13 пунктов (сейчас их более 100)</li>
+                        <li>Дриблинг не был частью оригинальной игры - мяч только передавали</li>
+                        <li>Первые профессиональные игроки получали около $2.5 за игру (примерно $75 сегодня)</li>
+                    </ul>
+                    <p>БАА была основана владельцами хоккейных арен, чтобы заполнить пустые залы между хоккейными матчами.</p>
+                </div>
+            </div>
+            
+            <div class="era-card clearfix" onclick="toggleAdditionalInfo(this)">
+                <h2 class="era-title">Рождение НБА (1946–1956)</h2>
+                <img src="https://pooha.net/images/basket_top10_4.jpg" alt="Джордж Майкен" class="era-image">
+                <p>В 1949 году БАА и НБЛ объединились, образовав <strong>Национальную баскетбольную ассоциацию (НБА)</strong>. Первой доминирующей командой стали <strong>«Миннеаполис Лейкерс»</strong> во главе с <strong>Джорджем Майкеном</strong>, который изменил игру, заставив лигу ввести новые правила.</p>
+                
+                <div class="additional-info">
+                    <h3>Революционные изменения:</h3>
+                    <ul>
+                        <li>Введено правило 24 секунд на атаку (1954)</li>
+                        <li>Джордж Майкен - первый "доминирующий большой" с 7 чемпионствами</li>
+                        <li>Средняя зарплата игрока: $8,000 в год ($90,000 сегодня)</li>
+                        <li>Первая телетрансляция матча НБА - 1953 год</li>
+                    </ul>
+                    <p>Майкен был настолько доминирующим, что лига расширила зону штрафного броска и ввела "правило Майкена", запрещавшее стоять в зоне более 3 секунд.</p>
+                </div>
+            </div>
+            
+            <div class="era-card clearfix" onclick="toggleAdditionalInfo(this)">
+                <h2 class="era-title">Эпоха «Бостон Селтикс» (1957–1969)</h2>
+                <img src="https://ru.cnhongqi.net/Content/uploads/2022165481/202208011023284ebdbfa546d04bc2ba579b26b19b4dbf.jpg" alt="Билл Рассел" class="era-image">
+                <p>Под руководством <strong>Реда Ауэрбаха</strong> и с <strong>Биллом Расселом</strong> в составе «Селтикс» выиграли <strong>11 чемпионств за 13 лет</strong>. Их главным соперником был <strong>Уилт Чемберлен</strong>, установивший рекорд в 100 очков за игру.</p>
+                
+                <div class="additional-info">
+                    <h3>Легендарные достижения:</h3>
+                    <ul>
+                        <li>Билл Рассел - 11 чемпионских титулов (рекорд)</li>
+                        <li>Уилт Чемберлен - 100 очков за игру (2 марта 1962)</li>
+                        <li>Реда Ауэрбаха ввел концепцию "шестого игрока"</li>
+                        <li>Первая игра с участием афроамериканца - 1950 год</li>
+                    </ul>
+                    <p>Финал НБА 1969 года между "Селтикс" и "Лейкерс" стал первым, где ввели звание MVP финала - его получил проигравший Джерри Уэст.</p>
+                </div>
+            </div>
+            
+            <div class="era-card clearfix" onclick="toggleAdditionalInfo(this)">
+                <h2 class="era-title">Слияние с АБА и новые звезды (1970–1980)</h2>
+                <img src="https://allbasketball.org/templates/AB2014/images/players/260x190/julius-erving.png" alt="Джулиус Ирвинг" class="era-image">
+                <p>В 1976 году НБА поглотила <strong>Американскую баскетбольную ассоциацию (АБА)</strong>, добавив команды вроде <strong>«Сан-Антонио Спёрс»</strong> и <strong>«Денвер Наггетс»</strong>. В 1980-х началось легендарное противостояние <strong>«Лейкерс» (Мэджик Джонсон)</strong> и <strong>«Селтикс» (Ларри Бёрд)</strong>, которое вывело лигу на новый уровень.</p>
+                
+                <div class="additional-info">
+                    <h3>Наследие АБА:</h3>
+                    <ul>
+                        <li>АБА подарила НБА трехочковый бросок и Slam Dunk Contest</li>
+                        <li>Джулиус "Доктор Дж" Ирвинг популяризировал стиль "выше кольца"</li>
+                        <li>Средняя зарплата выросла с $35,000 до $300,000 за десятилетие</li>
+                        <li>Первая трансляция финала в прайм-тайм (1979)</li>
+                    </ul>
+                    <p>Финал 1980 года запомнился "Детским финалом" Мэджика Джонсона, который в отсутствие травмированного Карима Абдул-Джаббара набрал 42 очка и сделал 15 подборов на позиции центрового.</p>
+                </div>
+            </div>
+            
+            <div class="era-card clearfix" onclick="toggleAdditionalInfo(this)">
+                <h2 class="era-title">Эра Майкла Джордана (1984–1998)</h2>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Michael_Jordan_in_2014.jpg/220px-Michael_Jordan_in_2014.jpg" alt="Майкл Джордан" class="era-image">
+                <p><strong>Майкл Джордан</strong> и <strong>«Чикаго Буллз»</strong> доминировали в 1990-х, выиграв <strong>6 титулов</strong>. В это же время блистали <strong>Хаким Оладжьювон, Карл Мэлоун, Джон Стоктон</strong> и <strong>Шакил О'Нил</strong>.</p>
+                
+                <div class="additional-info">
+                    <h3>Феномен Джордана:</h3>
+                    <ul>
+                        <li>6 титулов в 6 финалах (100% результат)</li>
+                        <li>5 MVP сезона и 6 MVP финалов</li>
+                        <li>Контракт Джордана с Nike создал бренд Air Jordan</li>
+                        <li>Финал 1998 года собрал рекордные 35.9 млн зрителей</li>
+                    </ul>
+                    <p>"The Last Shot" в финале 1998 года против "Юты" остается одним из самых знаковых моментов в истории спорта. Джордан зарабатывал $33 млн в 1997-98 - больше, чем весь состав некоторых команд.</p>
+                </div>
+            </div>
+            
+            <div class="era-card clearfix" onclick="toggleAdditionalInfo(this)">
+                <h2 class="era-title">Современная НБА (2000–2024)</h2>
+                <img src="https://avatars.mds.yandex.net/get-vthumb/4114059/dddf1f2b747161829725592d519a77ac/800x450" alt="ЛеБрон Джеймс" class="era-image">
+                <p>
+                    <strong>2000-е:</strong> «Лейкерс» (Коби Брайант и Шак) и «Спёрс» (Тим Данкан) делили чемпионства.<br>
+                    <strong>2010-е:</strong> «Майами Хит» (ЛеБрон Джеймс) и «Голден Стэйт Уорриорз» (Стеф Карри) стали главными силами лиги.<br>
+                    <strong>2020-е:</strong> «Милуоки Бакс» (Джаннис Адетокунбо) и «Денвер Наггетс» (Никола Йокич) продолжают писать новую историю.
+                </p>
+                
+                <div class="additional-info">
+                    <h3>Тенденции современной НБА:</h3>
+                    <ul>
+                        <li>Революция трехочковых (рекорд Curry - 402 за сезон)</li>
+                        <li>Зарплаты выросли до $50+ млн в год (Стеф Карри)</li>
+                        <li>Глобализация - 120 международных игроков в 2023</li>
+                        <li>Технологии: отслеживание движений, VAR, цифровые трансляции</li>
+                    </ul>
+                    <p>ЛеБрон Джеймс стал первым игроком в истории, вошедшим в топ-5 по очкам, подборам и передачам. В 2023 году НБА подписала новый медиаконтракт на $75 млрд на 11 лет.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 BYS. Все права защищены.</p>
+    </footer>
+
+    <script>
+        // Функция для показа/скрытия дополнительной информации
+        function toggleAdditionalInfo(card) {
+            const additionalInfo = card.querySelector('.additional-info');
+            const isVisible = additionalInfo.style.display === 'block';
+            
+            // Сначала скрываем все открытые блоки
+            document.querySelectorAll('.additional-info').forEach(info => {
+                info.style.display = 'none';
+            });
+            
+            // Если текущий блок был скрыт - показываем его
+            if (!isVisible) {
+                additionalInfo.style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>

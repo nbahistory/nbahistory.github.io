@@ -1,0 +1,87 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    background: linear-gradient(135deg, rgba(29, 38, 113, 0.8), rgba(139, 0, 255, 0.8)), 
+                url('https://www.transparenttextures.com/patterns/wood-pattern.png'); /* Fallback texture */
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+/* Контейнер */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+/* Заголовок страницы */
+h1 {
+    text-align: center;
+    color: #000000; 
+    margin-bottom: 20px;
+}
+
+/* Список игроков */
+.players-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+/* Карточка игрока */
+.player-card {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 15px;
+    width: 250px;
+    text-align: center;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.player-card:hover {
+    transform: scale(1.05);
+}
+
+/* Фото игрока */
+.player-photo {
+    width: 200px;
+    height: 150px;
+    margin-bottom: 10px;
+}
+
+/* Имя игрока */
+.player-card h2 {
+    margin: 10px 0;
+    color: #000000;
+}
+
+/* Информация об игроке */
+.player-card p {
+    margin: 5px 0;
+    color: #555;
+}
+.back-button {
+    display: inline-block;
+    background-color: #274070; /* Dark blue NBA theme */
+    color: white;
+    padding: 12px 25px;
+    font-size: 16px;
+    border-radius: 4px;
+    text-decoration: none;
+    margin: 20px auto;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+.back-button:hover {
+    background-color: #c9082a; /* Red accent on hover */
+}

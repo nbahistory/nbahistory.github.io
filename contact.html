@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="logo-nba-logoman.svg" type="image/svg+xml">
+    <title>Контакты NBA</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <header>
+        <h1>Контакты NBA</h1>
+        <nav>
+            <a href="index.html">Главная</a>
+            <a href="teams.html">Команды</a>
+            <a href="contact.html">Контакты</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="contact-container">
+            <h1>Свяжитесь с нами</h1>
+            <div class="contact-card">
+                <h2 class="contact-title">Контактная информация</h2>
+                <div class="contact-info">
+                    <span class="contact-icon">📌</span>
+                    <strong>Адрес:</strong> 645 Fifth Avenue, New York, NY 10022, USA
+                </div>
+                <div class="contact-info">
+                    <span class="contact-icon">📞</span>
+                    <strong>Телефон:</strong> +1 (212) 407-8000
+                </div>
+                <div class="contact-info">
+                    <span class="contact-icon">✉️</span>
+                    <strong>Email:</strong> info@nba.com
+                </div>
+                <div class="contact-info">
+                    <span class="contact-icon">🌐</span>
+                    <strong>Официальный сайт:</strong> <a href="https://www.nba.com" target="_blank">www.nba.com</a>
+                </div>
+                
+                <div class="social-links">
+                    <a href="https://www.facebook.com/nba" class="social-link" target="_blank">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook" width="24" height="24">
+                    </a>
+                    <a href="https://twitter.com/nba" class="social-link" target="_blank">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6f/Logo_of_Twitter.svg" alt="Twitter" width="24" height="24">
+                    </a>
+                    <a href="https://www.instagram.com/nba" class="social-link" target="_blank">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" alt="Instagram" width="24" height="24">
+                    </a>
+                    <a href="https://www.youtube.com/nba" class="social-link" target="_blank">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/7/72/YouTube_social_white_square_%282017%29.svg" alt="YouTube" width="24" height="24">
+                    </a>
+                </div>
+            </div>
+
+            <div class="contact-card">
+                <h2 class="contact-title">Офисы NBA</h2>
+                <div class="contact-info">
+                    <strong>Главный офис NBA:</strong><br>
+                    645 Fifth Avenue, New York, NY 10022
+                </div>
+                <div class="contact-info">
+                    <strong>Офис NBA Europe:</strong><br>
+                    The Peak, 5 Wilton Road, London, SW1V 1AP, UK
+                </div>
+                <div class="contact-info">
+                    <strong>Офис NBA Asia:</strong><br>
+                    18/F, One Island East, 18 Westlands Road, Quarry Bay, Hong Kong
+                </div>
+                <div class="contact-info">
+                    <strong>Офис NBA Latin America:</strong><br>
+                    Av. das Nações Unidas, 12901 - Brooklin Novo, São Paulo - SP, 04578-910, Brazil
+                </div>
+            </div>
+
+            <div class="contact-card">
+                <h2 class="contact-title">Форма обратной связи</h2>
+                <form id="contact-form" class="contact-form" action="submit_form.php" method="POST">
+                    <div class="form-group">
+                        <label for="name" class="form-label">Ваше имя:</label>
+                        <input type="text" id="name" name="name" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email" class="form-label">Ваш email:</label>
+                        <input type="email" id="email" name="email" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject" class="form-label">Тема сообщения:</label>
+                        <input type="text" id="subject" name="subject" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message" class="form-label">Ваше сообщение:</label>
+                        <textarea id="message" name="message" class="form-textarea" required></textarea>
+                    </div>
+                    <button type="submit" class="form-submit">Отправить сообщение</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 BYS. Все права защищены.</p>
+    </footer>
+
+    <script>
+        // Функция для показа toast-уведомления
+        function showToast(message, isError = false) {
+            const toast = document.getElementById('toast-notification');
+            const toastMessage = document.getElementById('toast-message');
+            
+            toastMessage.textContent = message;
+            toast.className = isError ? 'toast-notification error' : 'toast-notification';
+            toast.style.display = 'flex';
+            
+            // Анимация появления
+            setTimeout(() => {
+                toast.classList.add('show');
+            }, 10);
+            
+            // Автоматическое скрытие через 5 секунд
+            setTimeout(() => {
+                hideToast();
+            }, 5000);
+        }
+        
+        // Функция для скрытия toast-уведомления
+        function hideToast() {
+            const toast = document.getElementById('toast-notification');
+            toast.classList.remove('show');
+            
+            // Ждем завершения анимации перед скрытием
+            setTimeout(() => {
+                toast.style.display = 'none';
+            }, 300);
+        }
+        
+        // Обработка отправки формы
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const form = e.target;
+            const formData = new FormData(form);
+            const submitButton = form.querySelector('button[type="submit"]');
+            
+            // Сохраняем исходный текст кнопки
+            const originalButtonText = submitButton.textContent;
+            
+            // Меняем текст кнопки на "Отправка..."
+            submitButton.textContent = 'Отправка...';
+            submitButton.disabled = true;
+            
+            fetch(form.action, {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.success) {
+                    // Показываем красивый toast
+                    showToast('Ваше сообщение успешно отправлено!');
+                    // Очищаем форму
+                    form.reset();
+                } else {
+                    // Показываем ошибку в toast
+                    showToast(data.message || 'Произошла ошибка при отправке', true);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                showToast('Произошла ошибка при отправке формы', true);
+            })
+            .finally(() => {
+                // Восстанавливаем исходный текст кнопки
+                submitButton.textContent = originalButtonText;
+                submitButton.disabled = false;
+            });
+        });
+    </script>
+
+    <div id="toast-notification" class="toast-notification" style="display: none;">
+        <span class="toast-icon">✓</span>
+        <div class="toast-content" id="toast-message">Ваше сообщение успешно отправлено!</div>
+        <span class="toast-close" onclick="hideToast()">×</span>
+    </div>
+
+</body>
+</html>
