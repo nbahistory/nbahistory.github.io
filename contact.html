@@ -74,7 +74,7 @@
                 </div>
             </div>
 
-            <div class="contact-card">
+            <<div class="contact-card">
     <h2 class="contact-title">Форма обратной связи</h2>
     <form id="contact-form" class="contact-form">
         <div class="form-group">
@@ -95,10 +95,9 @@
         </div>
         <button type="submit" class="form-submit">Отправить сообщение</button>
         
-        <!-- Блок для вывода сообщений -->
-        <div id="form-message" class="form-message" style="display: none; margin-top: 15px; padding: 10px; border-radius: 4px;"></div>
+        <div id="form-message" class="form-message" style="display: none;"></div>
     </form>
-</div>
+    </div>
         </div>
     </div>
 
@@ -106,53 +105,59 @@
         <p>&copy; 2025 BYS. Все права защищены.</p>
     </footer>
 
-    <script>
-document.getElementById('contact-form').addEventListener('submit', function(e) {
+<script>
+document.getElementById('contact-form').addEventListener('submit', async function(e) {
     e.preventDefault();
     
     const form = e.target;
     const formData = new FormData(form);
     const messageElement = document.getElementById('form-message');
-    
-    // Показываем загрузку
     const submitButton = form.querySelector('button[type="submit"]');
+    
     submitButton.disabled = true;
     submitButton.textContent = 'Отправка...';
+    messageElement.style.display = 'none';
     
-    fetch('save.php', {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => response.json())
-    .then(data => {
+    try {
+        const response = await fetch('save.php', {
+            method: 'POST',
+            body: formData
+        });
+        
+        // Проверяем Content-Type ответа
+        const contentType = response.headers.get('content-type');
+        
+        if (!contentType || !contentType.includes('application/json')) {
+            const text = await response.text();
+            throw new Error(`Сервер вернул не JSON: ${text.substring(0, 100)}...`);
+        }
+        
+        const data = await response.json();
+        
         // Показываем сообщение
         messageElement.style.display = 'block';
         messageElement.textContent = data.message;
         
         if (data.success) {
-            messageElement.style.backgroundColor = '#d4edda';
-            messageElement.style.color = '#155724';
-            form.reset(); // Очищаем форму при успешной отправке
+            messageElement.className = 'form-message success';
+            form.reset();
         } else {
-            messageElement.style.backgroundColor = '#f8d7da';
-            messageElement.style.color = '#721c24';
+            messageElement.className = 'form-message error';
         }
-    })
-    .catch(error => {
+    } catch (error) {
+        console.error('Ошибка:', error);
         messageElement.style.display = 'block';
-        messageElement.style.backgroundColor = '#f8d7da';
-        messageElement.style.color = '#721c24';
-        messageElement.textContent = 'Ошибка сети: ' + error.message;
-    })
-    .finally(() => {
+        messageElement.className = 'form-message error';
+        messageElement.textContent = 'Ошибка при отправке: ' + 
+            (error.message || 'Проверьте подключение или обратитесь к администратору');
+    } finally {
         submitButton.disabled = false;
         submitButton.textContent = 'Отправить сообщение';
         
-        // Автоматически скрываем сообщение через 5 секунд
         setTimeout(() => {
             messageElement.style.display = 'none';
         }, 5000);
-    });
+    }
 });
 </script>
 
