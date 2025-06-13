@@ -75,27 +75,30 @@
             </div>
 
             <div class="contact-card">
-                <h2 class="contact-title">Форма обратной связи</h2>
-                <form id="contact-form" class="contact-form" action="submit_form.php" method="POST">
-                    <div class="form-group">
-                        <label for="name" class="form-label">Ваше имя:</label>
-                        <input type="text" id="name" name="name" class="form-input" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email" class="form-label">Ваш email:</label>
-                        <input type="email" id="email" name="email" class="form-input" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="subject" class="form-label">Тема сообщения:</label>
-                        <input type="text" id="subject" name="subject" class="form-input" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="message" class="form-label">Ваше сообщение:</label>
-                        <textarea id="message" name="message" class="form-textarea" required></textarea>
-                    </div>
-                    <button type="submit" class="form-submit">Отправить сообщение</button>
-                </form>
-            </div>
+    <h2 class="contact-title">Форма обратной связи</h2>
+    <form id="contact-form" class="contact-form">
+        <div class="form-group">
+            <label for="name" class="form-label">Ваше имя:</label>
+            <input type="text" id="name" name="name" class="form-input" required>
+        </div>
+        <div class="form-group">
+            <label for="email" class="form-label">Ваш email:</label>
+            <input type="email" id="email" name="email" class="form-input" required>
+        </div>
+        <div class="form-group">
+            <label for="subject" class="form-label">Тема сообщения:</label>
+            <input type="text" id="subject" name="subject" class="form-input" required>
+        </div>
+        <div class="form-group">
+            <label for="message" class="form-label">Ваше сообщение:</label>
+            <textarea id="message" name="message" class="form-textarea" required></textarea>
+        </div>
+        <button type="submit" class="form-submit">Отправить сообщение</button>
+        
+        <!-- Блок для вывода сообщений -->
+        <div id="form-message" class="form-message" style="display: none; margin-top: 15px; padding: 10px; border-radius: 4px;"></div>
+    </form>
+</div>
         </div>
     </div>
 
