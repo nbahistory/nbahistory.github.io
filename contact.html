@@ -117,6 +117,7 @@ var form = document.getElementById("my-form");
       headers: {
           'Accept': 'application/json'
       }
+
     }).then(response => {
       if (response.ok) {
         status.innerHTML = "Thanks for your submission!";
@@ -135,13 +136,9 @@ var form = document.getElementById("my-form");
     });
   }
   form.addEventListener("submit", handleSubmit)
+  if (response.ok) {
+    form.reset();
+  } 
 </script>
-
-    <div id="toast-notification" class="toast-notification" style="display: none;">
-        <span class="toast-icon">✓</span>
-        <div class="toast-content" id="toast-message">Ваше сообщение успешно отправлено!</div>
-        <span class="toast-close" onclick="hideToast()">×</span>
-    </div>
-
 </body>
 </html>
