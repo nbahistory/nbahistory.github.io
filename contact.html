@@ -107,84 +107,54 @@
     </footer>
 
     <script>
-        // Функция для показа toast-уведомления
-        function showToast(message, isError = false) {
-            const toast = document.getElementById('toast-notification');
-            const toastMessage = document.getElementById('toast-message');
-            
-            toastMessage.textContent = message;
-            toast.className = isError ? 'toast-notification error' : 'toast-notification';
-            toast.style.display = 'flex';
-            
-            // Анимация появления
-            setTimeout(() => {
-                toast.classList.add('show');
-            }, 10);
-            
-            // Автоматическое скрытие через 5 секунд
-            setTimeout(() => {
-                hideToast();
-            }, 5000);
-        }
+document.getElementById('contact-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const form = e.target;
+    const formData = new FormData(form);
+    const messageElement = document.getElementById('form-message');
+    
+    // Показываем загрузку
+    const submitButton = form.querySelector('button[type="submit"]');
+    submitButton.disabled = true;
+    submitButton.textContent = 'Отправка...';
+    
+    fetch('save.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        // Показываем сообщение
+        messageElement.style.display = 'block';
+        messageElement.textContent = data.message;
         
-        // Функция для скрытия toast-уведомления
-        function hideToast() {
-            const toast = document.getElementById('toast-notification');
-            toast.classList.remove('show');
-            
-            // Ждем завершения анимации перед скрытием
-            setTimeout(() => {
-                toast.style.display = 'none';
-            }, 300);
+        if (data.success) {
+            messageElement.style.backgroundColor = '#d4edda';
+            messageElement.style.color = '#155724';
+            form.reset(); // Очищаем форму при успешной отправке
+        } else {
+            messageElement.style.backgroundColor = '#f8d7da';
+            messageElement.style.color = '#721c24';
         }
+    })
+    .catch(error => {
+        messageElement.style.display = 'block';
+        messageElement.style.backgroundColor = '#f8d7da';
+        messageElement.style.color = '#721c24';
+        messageElement.textContent = 'Ошибка сети: ' + error.message;
+    })
+    .finally(() => {
+        submitButton.disabled = false;
+        submitButton.textContent = 'Отправить сообщение';
         
-        // Обработка отправки формы
-        document.getElementById('contact-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const form = e.target;
-            const formData = new FormData(form);
-            const submitButton = form.querySelector('button[type="submit"]');
-            
-            // Сохраняем исходный текст кнопки
-            const originalButtonText = submitButton.textContent;
-            
-            // Меняем текст кнопки на "Отправка..."
-            submitButton.textContent = 'Отправка...';
-            submitButton.disabled = true;
-            
-            fetch(form.action, {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then(data => {
-                if (data.success) {
-                    // Показываем красивый toast
-                    showToast('Ваше сообщение успешно отправлено!');
-                    // Очищаем форму
-                    form.reset();
-                } else {
-                    // Показываем ошибку в toast
-                    showToast(data.message || 'Произошла ошибка при отправке', true);
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                showToast('Произошла ошибка при отправке формы', true);
-            })
-            .finally(() => {
-                // Восстанавливаем исходный текст кнопки
-                submitButton.textContent = originalButtonText;
-                submitButton.disabled = false;
-            });
-        });
-    </script>
+        // Автоматически скрываем сообщение через 5 секунд
+        setTimeout(() => {
+            messageElement.style.display = 'none';
+        }, 5000);
+    });
+});
+</script>
 
     <div id="toast-notification" class="toast-notification" style="display: none;">
         <span class="toast-icon">✓</span>
