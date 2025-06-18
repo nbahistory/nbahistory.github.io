@@ -3,8 +3,7 @@ body {
     margin: 0;
     padding: 0;
     color: #333;
-    background: linear-gradient(135deg, rgba(29, 38, 113, 0.8), rgba(139, 0, 255, 0.8)), 
-                url('https://www.transparenttextures.com/patterns/wood-pattern.png'); /* Fallback texture */
+    background-image: url(BYSTEAM\ X\ NBA.png) ;
     background-size: cover;
     background-attachment: fixed;
     background-position: center;
