@@ -74,120 +74,68 @@
                 </div>
             </div>
 
-            <div class="contact-card">
-                <h2 class="contact-title">Форма обратной связи</h2>
-                <form id="contact-form" class="contact-form" action="submit_form.php" method="POST">
-                    <div class="form-group">
-                        <label for="name" class="form-label">Ваше имя:</label>
-                        <input type="text" id="name" name="name" class="form-input" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email" class="form-label">Ваш email:</label>
-                        <input type="email" id="email" name="email" class="form-input" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="subject" class="form-label">Тема сообщения:</label>
-                        <input type="text" id="subject" name="subject" class="form-input" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="message" class="form-label">Ваше сообщение:</label>
-                        <textarea id="message" name="message" class="form-textarea" required></textarea>
-                    </div>
-                    <button type="submit" class="form-submit">Отправить сообщение</button>
-                </form>
+                <div class="contact-card">
+        <h2 class="contact-title">Обратная связь</h2>
+        <form id="contact-form" action="https://formspree.io/f/meokgyoj" method="POST">
+            <div class="form-group">
+                <label for="name" class="form-label">Ваше имя</label>
+                <input type="text" id="name" name="name" class="form-input" required>
             </div>
+            <div class="form-group">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" id="email" name="email" class="form-input" required>
+            </div>
+            <div class="form-group">
+                <label for="subject" class="form-label">Тема</label>
+                <input type="text" id="subject" name="subject" class="form-input" required>
+            </div>
+            <div class="form-group">
+                <label for="message" class="form-label">Сообщение</label>
+                <textarea id="message" name="message" class="form-textarea" required></textarea>
+            </div>
+            <button type="submit" class="form-submit" id="submit-btn">Отправить</button>
+            <div id="alert" class="alert"></div>
+        </form>
+    </div>
         </div>
     </div>
 
     <footer>
         <p>&copy; 2025 BYS. Все права защищены.</p>
     </footer>
+    
+<script>
+var form = document.getElementById("my-form");
+  
+  async function handleSubmit(event) {
+    event.preventDefault();
+    var status = document.getElementById("my-form-status");
+    var data = new FormData(event.target);
+    fetch(event.target.action, {
+      method: form.method,
+      body: data,
+      headers: {
+          'Accept': 'application/json'
+      }
 
-    <script>
-        // Функция для показа toast-уведомления
-        function showToast(message, isError = false) {
-            const toast = document.getElementById('toast-notification');
-            const toastMessage = document.getElementById('toast-message');
-            
-            toastMessage.textContent = message;
-            toast.className = isError ? 'toast-notification error' : 'toast-notification';
-            toast.style.display = 'flex';
-            
-            // Анимация появления
-            setTimeout(() => {
-                toast.classList.add('show');
-            }, 10);
-            
-            // Автоматическое скрытие через 5 секунд
-            setTimeout(() => {
-                hideToast();
-            }, 5000);
-        }
-        
-        // Функция для скрытия toast-уведомления
-        function hideToast() {
-            const toast = document.getElementById('toast-notification');
-            toast.classList.remove('show');
-            
-            // Ждем завершения анимации перед скрытием
-            setTimeout(() => {
-                toast.style.display = 'none';
-            }, 300);
-        }
-        
-        // Обработка отправки формы
-        document.getElementById('contact-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const form = e.target;
-            const formData = new FormData(form);
-            const submitButton = form.querySelector('button[type="submit"]');
-            
-            // Сохраняем исходный текст кнопки
-            const originalButtonText = submitButton.textContent;
-            
-            // Меняем текст кнопки на "Отправка..."
-            submitButton.textContent = 'Отправка...';
-            submitButton.disabled = true;
-            
-            fetch(form.action, {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                return response.json();
-            })
-            .then(data => {
-                if (data.success) {
-                    // Показываем красивый toast
-                    showToast('Ваше сообщение успешно отправлено!');
-                    // Очищаем форму
-                    form.reset();
-                } else {
-                    // Показываем ошибку в toast
-                    showToast(data.message || 'Произошла ошибка при отправке', true);
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                showToast('Произошла ошибка при отправке формы', true);
-            })
-            .finally(() => {
-                // Восстанавливаем исходный текст кнопки
-                submitButton.textContent = originalButtonText;
-                submitButton.disabled = false;
-            });
-        });
-    </script>
-
-    <div id="toast-notification" class="toast-notification" style="display: none;">
-        <span class="toast-icon">✓</span>
-        <div class="toast-content" id="toast-message">Ваше сообщение успешно отправлено!</div>
-        <span class="toast-close" onclick="hideToast()">×</span>
-    </div>
-
+    }).then(response => {
+      if (response.ok) {
+        status.innerHTML = "Thanks for your submission!";
+        form.reset()
+      } else {
+        response.json().then(data => {
+          if (Object.hasOwn(data, 'errors')) {
+            status.innerHTML = data["errors"].map(error => error["message"]).join(", ")
+          } else {
+            status.innerHTML = "Oops! There was a problem submitting your form"
+          }
+        })
+      }
+    }).catch(error => {
+      status.innerHTML = "Oops! There was a problem submitting your form"
+    });
+  }
+  form.addEventListener("submit", handleSubmit)
+</script>
 </body>
 </html>
