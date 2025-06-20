@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://nbahistory.github.io/sitemap.xml
