@@ -20,7 +20,7 @@
         <div class="history-container">
             <h1>История NBA: от истоков до современности</h1>
             
-            <div class="era-card clearfix" onclick="toggleAdditionalInfo(this)">
+            <div class="era-card clearfix" onclick="toggleAdditionalInfo(this)">    
                 <h2 class="era-title">Зарождение баскетбола (1891–1946)</h2>
                 <img src="https://sun9-60.userapi.com/impg/vfZNEs7F4r3PSTngUutTIBCapgON62iS0C6Ksg/ISmmBWf41pY.jpg?size=589x584&quality=96&sign=9ac883431442322d93c361f404f71f14&type=album" alt="Джеймс Нейсмит" class="era-image">
                 <p>Баскетбол был изобретен в 1891 году <strong>Джеймсом Нейсмитом</strong>. Первый профессиональный матч состоялся в 1896 году между командами из Трентона и Бруклина. В 1898 году появилась <strong>Национальная баскетбольная лига (НБЛ)</strong>, но настоящий прорыв произошел в 1946-м с созданием <strong>БАА (Баскетбольной ассоциации Америки)</strong>.</p>
@@ -133,17 +133,13 @@
     </footer>
 
     <script>
-        // Функция для показа/скрытия дополнительной информации
         function toggleAdditionalInfo(card) {
             const additionalInfo = card.querySelector('.additional-info');
             const isVisible = additionalInfo.style.display === 'block';
             
-            // Сначала скрываем все открытые блоки
             document.querySelectorAll('.additional-info').forEach(info => {
                 info.style.display = 'none';
             });
-            
-            // Если текущий блок был скрыт - показываем его
             if (!isVisible) {
                 additionalInfo.style.display = 'block';
             }
